@@ -1,4 +1,4 @@
-#Navbar {
+.Navbar {
   width: 100vw;
   height: 60px;
   padding-left: 20px;
@@ -7,7 +7,7 @@
   position: fixed;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   z-index: 10;
   background-color: #333;
   margin: 0;
@@ -21,4 +21,23 @@
 .NavIcon {
   margin-top: auto;
   margin-bottom: auto;
+}
+.NavbarLink {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 20px;
+  color: white;
+}
+.LogoLink {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  color: white;
+  display: flex;
+}
+.LogoLink > span {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  font-size: 20px;
 }

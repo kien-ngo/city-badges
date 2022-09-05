@@ -1,31 +1,41 @@
-import { NFT, useAddress } from "@thirdweb-dev/react";
+import { NFT, useContract } from "@thirdweb-dev/react";
 import { Erc721 } from "@thirdweb-dev/sdk";
 import { BaseERC721 } from "@thirdweb-dev/sdk/dist/declarations/src/types/eips";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { resolveIPFS } from "../../utils/resolveIPFS";
+import { CONTRACT_ADDRESS } from "../../utils/contractAddress";
 import styles from "./ProfileNftItem.module.css";
+import nft_styles from "../../styles/Nft.module.css";
+import NftImage from "../NftImage";
+import { MouseEvent } from "react";
+import { BigNumberish } from "ethers";
+
+const openTransferNftModal = (e: MouseEvent, tokenId: BigNumberish) => {
+  e.stopPropagation();
+  if (!tokenId) return alert("Error: Missing tokenId");
+  const TransferNftModal = document.getElementById(
+    "TransferNftModal"
+  ) as HTMLElement;
+  if (!TransferNftModal) return alert("Error: DOM Missing");
+  TransferNftModal.style.display = "flex";
+  TransferNftModal.setAttribute("__ti", tokenId.toString());
+  document.documentElement.classList.add("modalOpen");
+};
+
 const ProfileNftItem = ({ nft }: { nft: NFT<Erc721<BaseERC721>> }) => {
-  const address = useAddress();
-  const router = useRouter();
-  // Get the NFT collection using its contract address
   return (
-    <div className={styles.NftItem}>
-      <Image
-        alt={nft.metadata.description || ""}
-        src={resolveIPFS(nft.metadata.image!)}
-        width={256}
-        height={256}
-        loading="lazy"
-        priority={false}
-      ></Image>
-      <div className={styles.Bottom}>
-        <div className={styles.NftDesc}>
-          {nft.metadata.name}
-        </div>
-        {router.pathname === "/profile" && (
-          <button className={styles.MintBtn}>Transfer</button>
-        )}
+    <div className={nft_styles.NftItem}>
+      <NftImage
+        desc={nft.metadata.description!}
+        url={nft.metadata.image!}
+        tokenId={nft.metadata.id.toNumber()}
+      />
+      <div className={nft_styles.Bottom}>
+        <div className={nft_styles.NftDesc}>{nft.metadata.name}</div>
+        <button
+          className={nft_styles.MintBtn}
+          onClick={(e) => openTransferNftModal(e, nft.metadata.id)}
+        >
+          Transfer
+        </button>
       </div>
     </div>
   );

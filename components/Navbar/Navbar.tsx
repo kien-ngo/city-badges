@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { JSXElementConstructor, ReactElement, ReactFragment } from "react";
-import usePageLoad from "../../hooks/usePageLoad";
 import styles from "./Navbar.module.css";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
@@ -11,57 +10,33 @@ type NavBarProps = {
 };
 
 const NavBar = (props: NavBarProps) => {
-  const pageLoaded = usePageLoad();
   const router = useRouter();
   return (
-    <div id={styles.Navbar}>
+    <div className={styles.Navbar}>
       <Link href="/">
-        <a
-          style={{
-            marginTop: "auto",
-            marginRight: "40px",
-            marginBottom: "auto",
-            color: "white",
-          }}
-        >
+        <a className={styles.LogoLink}>
           <img src="/icon.png" width={40} height={40} />
+          <span>City Badges</span>
         </a>
       </Link>
-      {router.pathname !== "/" && (
-        <Link href="/">
-          <a
-            style={{
-              marginTop: "auto",
-              marginRight: "40px",
-              marginLeft: "auto",
-              marginBottom: "auto",
-              color: "white",
-            }}
-          >
-            Home
-          </a>
+      {router.pathname !== "/marketplace" && (
+        <Link href="/marketplace">
+          <a className={styles.NavbarLink}>Marketplace</a>
+        </Link>
+      )}
+      {router.pathname !== "/about" && (
+        <Link href="/about">
+          <a className={styles.NavbarLink}>About</a>
         </Link>
       )}
       {router.pathname !== "/profile" && (
         <Link href="/profile">
-          <a
-            style={{
-              marginTop: "auto",
-              marginRight: "40px",
-              marginLeft: "auto",
-              marginBottom: "auto",
-              color: "white",
-            }}
-          >
-            Profile
-          </a>
+          <a className={styles.NavbarLink}>Profile</a>
         </Link>
       )}
-      {pageLoaded && (
-        <span className={styles.LogInBtnContainer}>
-          <ConnectWallet />
-        </span>
-      )}
+      <span className={styles.LogInBtnContainer}>
+        <ConnectWallet />
+      </span>
     </div>
   );
 };

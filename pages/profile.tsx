@@ -6,6 +6,10 @@ import { CONTRACT_ADDRESS } from "../utils/contractAddress";
 const NftItem_ = dynamic(
   () => import("../components/ProfileNftItem/ProfileNftItem")
 );
+const _TransferNftModal = dynamic(
+  () => import("../components/TransferNftModal/TransferNftModal"),
+  { ssr: false }
+);
 const ProfilePage = () => {
   const address = useAddress();
   const { contract } = useContract(CONTRACT_ADDRESS);
@@ -17,23 +21,36 @@ const ProfilePage = () => {
   if (!address)
     return (
       <Container>
-        <h1>Connect your wallet to see stuff</h1>
+        <p
+          style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
+        >
+          Connect your wallet to see stuff
+        </p>
       </Container>
     );
   if (isLoading)
     return (
       <Container>
-        <h1>Loading stuff. Don&apos;t get impatient</h1>
+        <p
+          style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
+        >
+          Loading stuff. Don&apos;t get impatient
+        </p>
       </Container>
     );
   if (!ownedNFTs || !ownedNFTs.length)
     return (
       <Container>
-        <h1>You don&apos;t own any NFTs and you will never be happy</h1>
+        <p
+          style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
+        >
+          You don&apos;t own any NFTs and you will never be happy
+        </p>
       </Container>
     );
   return (
     <Container>
+      <_TransferNftModal />
       <div className={styles.NftContainer}>
         {!isLoading ? (
           <>

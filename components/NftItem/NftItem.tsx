@@ -1,11 +1,11 @@
 import { useAddress, useNFTCollection } from "@thirdweb-dev/react";
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { CityBadgeNft } from "../../classes/nfts";
 import { CONTRACT_ADDRESS } from "../../utils/contractAddress";
-import { resolveIPFS } from "../../utils/resolveIPFS";
 import styles from "./NftItem.module.css";
+import nft_styles from "../../styles/Nft.module.css";
+import NftImage from "../NftImage";
+
 const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
   const address = useAddress();
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,21 +44,10 @@ const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
   };
   // Get the NFT collection using its contract address
   return (
-    <div className={styles.NftItem}>
-      <Link href="/">
-        <a>
-          <Image
-            alt={nft.description}
-            src={resolveIPFS(nft.url)}
-            width={256}
-            height={256}
-            loading="lazy"
-            priority={false}
-          ></Image>
-        </a>
-      </Link>
-      <div className={styles.Bottom}>
-        <div className={styles.NftDesc}>
+    <div className={nft_styles.NftItem}>
+      <NftImage desc={nft.description} url={nft.url} tokenId={nft.id} />
+      <div className={nft_styles.Bottom}>
+        <div className={nft_styles.NftDesc}>
           {nft.name}
           <br></br>
           <a
@@ -71,11 +60,14 @@ const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
           </a>
         </div>
         {!nft.minted ? (
-          <button className={styles.MintBtn} onClick={() => mintNft(nft.id)}>
+          <button
+            className={nft_styles.MintBtn}
+            onClick={() => mintNft(nft.id)}
+          >
             {loading ? "Loading..." : `${nft.price}AVAX`}
           </button>
         ) : (
-          <button className={styles.MintBtn} disabled>
+          <button className={nft_styles.MintBtn} disabled>
             Minted
           </button>
         )}
