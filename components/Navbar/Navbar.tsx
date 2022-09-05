@@ -15,7 +15,7 @@ const NavBar = (props: NavBarProps) => {
     <div className={styles.Navbar}>
       <Link href="/">
         <a className={styles.LogoLink}>
-          <img src="/icon.png" width={40} height={40} />
+          <img src="/Icon.png" width={40} height={40} />
           <span>City Badges</span>
         </a>
       </Link>

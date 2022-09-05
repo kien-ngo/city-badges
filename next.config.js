@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ["gateway.ipfscdn.io", "cloudflare-ipfs.com"],
   },
+  experimental: { images: { allowFutureImage: true } },
 };
 
 module.exports = nextConfig;
