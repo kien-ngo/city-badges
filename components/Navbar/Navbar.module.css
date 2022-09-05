@@ -12,7 +12,6 @@
   background-color: #333;
   margin: 0;
   top: 0;
-  /* border-bottom: 1px solid white; */
 }
 .LogInBtnContainer {
   margin-top: auto;
@@ -40,4 +39,10 @@
   margin-bottom: auto;
   margin-left: 10px;
   font-size: 20px;
+}
+@media only screen and (max-width: 730px) {
+  .NavbarLink,
+  .LogInBtnContainer {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 import { useContract } from "@thirdweb-dev/react";
 import { useState } from "react";
 import backdropStyle from "../../styles/backdrop.module.css";
-import { CONTRACT_ADDRESS } from "../../utils/contractAddress";
+import { MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 import { MouseEvent } from "react";
 import styles from "./TransferNftModal.module.css";
 import { isAddress } from "ethers/lib/utils";
@@ -14,7 +14,7 @@ const closeTransferNftModal = () => {
 };
 
 const TransferNftModal = () => {
-  const { contract } = useContract(CONTRACT_ADDRESS);
+  const { contract } = useContract(MINT_CONTRACT_ADDRESS);
   const [receiveAddress, setReceiveAddress] = useState<string>("");
   const transferNft = async (e: MouseEvent) => {
     e.stopPropagation();

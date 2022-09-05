@@ -1,7 +1,7 @@
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CityBadgeNft, NFTs } from "../../../classes/nfts";
-import { CONTRACT_ADDRESS } from "../../../utils/contractAddress";
+import { MINT_CONTRACT_ADDRESS } from "../../../utils/contractAddress";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   const { tokenId } = req.query;
   const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY!, "avalanche");
-  const nftCollectionAddress = CONTRACT_ADDRESS;
+  const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
   const nftCollection = sdk.getNFTCollection(nftCollectionAddress);
   const mintedNfts: NFTMetadataOwner[] = await nftCollection?.getAll();
   let nfts: CityBadgeNft[] = NFTs;

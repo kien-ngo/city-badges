@@ -3,6 +3,7 @@ import { JSXElementConstructor, ReactElement, ReactFragment } from "react";
 import styles from "./Navbar.module.css";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
+import HamburgerMenu from "../SideMenu/SideMenu";
 type NavBarProps = {
   children:
     | ReactElement<any, string | JSXElementConstructor<any>>
@@ -37,6 +38,7 @@ const NavBar = (props: NavBarProps) => {
       <span className={styles.LogInBtnContainer}>
         <ConnectWallet />
       </span>
+      <HamburgerMenu />
     </div>
   );
 };

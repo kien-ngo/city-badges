@@ -2,7 +2,7 @@ import { useAddress, useContract, useOwnedNFTs } from "@thirdweb-dev/react";
 import dynamic from "next/dynamic";
 import Container from "../components/Container";
 import styles from "../styles/Profile.module.css";
-import { CONTRACT_ADDRESS } from "../utils/contractAddress";
+import { MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
 const NftItem_ = dynamic(
   () => import("../components/ProfileNftItem/ProfileNftItem")
 );
@@ -12,7 +12,7 @@ const _TransferNftModal = dynamic(
 );
 const ProfilePage = () => {
   const address = useAddress();
-  const { contract } = useContract(CONTRACT_ADDRESS);
+  const { contract } = useContract(MINT_CONTRACT_ADDRESS);
   const {
     data: ownedNFTs,
     isLoading,
@@ -51,6 +51,13 @@ const ProfilePage = () => {
   return (
     <Container>
       <_TransferNftModal />
+      <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: '20px' }}>
+        You own {ownedNFTs.length} NFT(s)
+        <br />
+        On Sale: 0 <br />
+        Offer: 0
+        <br/>
+      </div>
       <div className={styles.NftContainer}>
         {!isLoading ? (
           <>

@@ -5,7 +5,7 @@ import {
   PayloadToSign721,
 } from "@thirdweb-dev/sdk";
 import { CityBadgeNft, NFTs } from "../../classes/nfts";
-import { CONTRACT_ADDRESS } from "../../utils/contractAddress";
+import { MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,7 +15,7 @@ export default async function handler(
   // Learn more about securely accessing your private key: https://portal.thirdweb.com/web3-sdk/set-up-the-sdk/securing-your-private-key
   const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY!, "avalanche");
   // Set variable for the NFT collection contract address which can be found after creating an NFT collection in the dashboard
-  const nftCollectionAddress = CONTRACT_ADDRESS;
+  const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
   // Initialize the NFT collection with the contract address
   const nftCollection = sdk.getNFTCollection(nftCollectionAddress);
   switch (req.method) {

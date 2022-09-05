@@ -1,0 +1,106 @@
+.HamburgerMenu {
+  display: none;
+}
+
+.menuToggle {
+  opacity: 0;
+}
+
+.menuToggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+
+.menuToggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+
+.menuToggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.menuToggle:checked ~ .menu__box {
+  right: 0 !important;
+}
+
+.menu__btn {
+  position: fixed;
+  top: 40px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  right: 40px;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition-duration: 0.25s;
+}
+
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
+
+.menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+
+.menu__box {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  max-width: 80vw;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #333;
+  box-shadow: 2px 2px 6px rgba(252, 250, 250, 0.4);
+  transition-duration: 0.25s;
+}
+
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.25s;
+}
+
+@media only screen and (max-width: 730px) {
+  .HamburgerMenu {
+    display: block;
+  }
+
+  .menu__btn {
+    right: 30px;
+    top: 30px;
+  }
+}
+.SidebarLink {
+  color: white !important;
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+.LogInBtnContainer {
+  margin-left: auto;
+  margin-right: auto;
+}
