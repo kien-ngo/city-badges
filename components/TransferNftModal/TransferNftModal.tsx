@@ -11,6 +11,10 @@ const closeTransferNftModal = () => {
   const modal = document.getElementById("TransferNftModal") as HTMLElement;
   modal.setAttribute("__ti", "");
   if (modal) modal.style.display = "none";
+  const input = document.getElementById(
+    "deliveryAddressInput"
+  ) as HTMLInputElement;
+  if (input) input.value = "";
 };
 
 const TransferNftModal = () => {
@@ -37,6 +41,7 @@ const TransferNftModal = () => {
     >
       <div className={styles.Content}>
         <input
+          id="deliveryAddressInput"
           type="text"
           placeholder="Delivery address: 0x..."
           onClick={(e) => {
