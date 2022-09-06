@@ -1,8 +1,10 @@
 import { useAddress } from "@thirdweb-dev/react";
+import { BigNumber } from "ethers";
 import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { AssetPageNft } from "../classes/nft-asset-page";
 import { CityBadgeNft } from "../classes/nfts";
 import Container from "../components/Container";
 import MintButton from "../components/MintButton/MintButton";
@@ -23,6 +25,7 @@ const AssetPage = () => {
   const [ownerAddress, setOwnerAddress] = useState<string>("");
   const ownedByYou: boolean = ownerAddress === address;
   const [fetchedNft, setFetchedNft] = useState(false);
+  const [_tokenId, _setTokenId] = useState<BigNumber | undefined>();
   const fetchNfts = async () => {
     try {
       const response = await fetch(`/api/get-single-nft/${tokenId}`, {
@@ -31,11 +34,12 @@ const AssetPage = () => {
           "Content-Type": "application/json",
         },
       });
-      const data = await response.json();
+      const data: AssetPageNft = await response.json();
       console.log(data);
       setNft(data.result);
       setOwnerAddress(data.ownerAddress);
       setFetchedNft(true);
+      _setTokenId(data.id);
     } catch (error) {
       console.error(error);
     }
@@ -65,8 +69,8 @@ const AssetPage = () => {
         <div className={styles.Header}>
           <Image
             src={resolveIPFS(nft.url)}
-            width={300}
-            height={300}
+            width={310}
+            height={310}
             alt={nft!.name}
           />
           <div className={styles.Info}>
@@ -86,7 +90,7 @@ const AssetPage = () => {
               Continent: {nft.continent}
             </div>
             <br />
-            {ownedByYou && <TransferNftButton tokenId={nft!.id} />}
+            {ownedByYou && _tokenId && <TransferNftButton tokenId={_tokenId} />}
             {!nft.minted && (
               <div>
                 Mint: <MintButton nft={nft} />

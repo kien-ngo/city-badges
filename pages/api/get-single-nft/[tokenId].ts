@@ -1,5 +1,7 @@
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { BigNumber } from "ethers";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { AssetPageNft } from "../../../classes/nft-asset-page";
 import { CityBadgeNft, NFTs } from "../../../classes/nfts";
 import { MINT_CONTRACT_ADDRESS } from "../../../utils/contractAddress";
 
@@ -32,14 +34,23 @@ export default async function handler(
         });
       } else {
         let ownerAddress: string = "";
+        let id: BigNumber | undefined = undefined;
         if (result.minted) {
           const _nft = mintedNfts.find(
             // @ts-expect-error
             (nft) => nft.metadata.attributes!.id === result.id
           );
-          if (_nft) ownerAddress = _nft.owner;
+          if (_nft) {
+            ownerAddress = _nft.owner;
+            id = _nft.metadata.id;
+          }
         }
-        res.status(200).json({ result: result, ownerAddress: ownerAddress });
+        const __response: AssetPageNft = {
+          result,
+          ownerAddress,
+          id,
+        };
+        res.status(200).json(__response);
       }
       break;
   }

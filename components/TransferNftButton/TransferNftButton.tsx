@@ -1,7 +1,8 @@
+import { BigNumber } from "ethers";
 import { MouseEvent } from "react";
 import nft_styles from "../../styles/Nft.module.css";
 
-const openTransferNftModal = (e: MouseEvent, tokenId: number) => {
+const openTransferNftModal = (e: MouseEvent, tokenId: BigNumber) => {
   e.stopPropagation();
   if (!tokenId) return alert("Error: Missing tokenId");
   const TransferNftModal = document.getElementById(
@@ -13,7 +14,7 @@ const openTransferNftModal = (e: MouseEvent, tokenId: number) => {
   document.documentElement.classList.add("modalOpen");
 };
 
-const TransferNftButton = ({ tokenId }: { tokenId: number }) => {
+const TransferNftButton = ({ tokenId }: { tokenId: BigNumber }) => {
   console.log({ tokenId })
   return (
     <button

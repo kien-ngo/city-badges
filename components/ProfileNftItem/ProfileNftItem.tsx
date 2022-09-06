@@ -19,7 +19,7 @@ const ProfileNftItem = ({ nft }: { nft: NFT<Erc721<BaseERC721>> }) => {
       />
       <div className={nft_styles.Bottom}>
         <div className={nft_styles.NftDesc}>{nft.metadata.name}</div>
-        <TransferNftButton tokenId={tokenId} />
+        <TransferNftButton tokenId={nft.metadata.id} />
       </div>
     </div>
   );

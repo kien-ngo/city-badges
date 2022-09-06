@@ -14,7 +14,9 @@ const AboutPage = () => {
         <br />
         Built with Next JS and Thirdweb SDK
         <br />
-        <hr />
+      </p>
+      <hr />
+      <p style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}>
         <span>
           <b>Mint Contract address:</b> {MINT_CONTRACT_ADDRESS}
         </span>
@@ -26,7 +28,8 @@ const AboutPage = () => {
         >
           Link: https://snowtrace.io/address/{MINT_CONTRACT_ADDRESS}
         </a>
-        <br /><br/>
+        <br />
+        <br />
         <span>
           <b>Marketplace Contract address:</b> {MARKETPLACE_CONTRACT_ADDRESS}
         </span>
