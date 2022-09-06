@@ -7,6 +7,7 @@ import { CityBadgeNft } from "../classes/nfts";
 import Container from "../components/Container";
 import MintButton from "../components/MintButton/MintButton";
 import TransferNftButton from "../components/TransferNftButton/TransferNftButton";
+import usePageLoad from "../hooks/usePageLoad";
 import styles from "../styles/Asset.module.css";
 import { resolveIPFS } from "../utils/resolveIPFS";
 const _TransferNftModal = dynamic(
@@ -17,7 +18,7 @@ const AssetPage = () => {
   const router = useRouter();
   const { tokenId } = router.query;
   const address = useAddress();
-  const [loading, setLoading] = useState(false);
+  const pageLoad = usePageLoad();
   const [nft, setNft] = useState<CityBadgeNft>();
   const [ownerAddress, setOwnerAddress] = useState<string>("");
   const ownedByYou: boolean = ownerAddress === address;
@@ -39,10 +40,9 @@ const AssetPage = () => {
       console.error(error);
     }
   };
-  // useEffect hook to get NFTs from API
   useEffect(() => {
     fetchNfts();
-  }, [loading]);
+  }, [pageLoad]);
   if (!fetchedNft)
     return (
       <Container>
@@ -72,12 +72,15 @@ const AssetPage = () => {
           <div className={styles.Info}>
             <div style={{ fontSize: 30 }}>{nft.name}</div>
             {nft.minted && (
-              <div>{ownedByYou ? "Owned by you" : "Minted by someone else"}</div>
+              <div>
+                {ownedByYou ? "Owned by you" : "Minted by someone else"}
+              </div>
             )}
             <br />
             <br />
             <div>
               <b>Attributes</b>:<br />
+              Token ID: {nft.id} <br />
               City: {nft.city} <br />
               Country: {nft.country} <br />
               Continent: {nft.continent}

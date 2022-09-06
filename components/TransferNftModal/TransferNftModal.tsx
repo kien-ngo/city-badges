@@ -22,6 +22,8 @@ const TransferNftModal = () => {
   const [receiveAddress, setReceiveAddress] = useState<string>("");
   const transferNft = async (e: MouseEvent) => {
     e.stopPropagation();
+    __test();
+    return;
     if (!receiveAddress) return alert("Need a destination!");
     if (receiveAddress.length !== 42) return alert("EVM address is invalid");
     if (!isAddress(receiveAddress))
@@ -31,8 +33,16 @@ const TransferNftModal = () => {
     ) as HTMLElement;
     const tokenId: number = Number(TransferNftModal.getAttribute("__ti"));
     if (!tokenId) return alert("Could not find tokenId!");
+    alert(tokenId);
     await contract!.nft!.transfer(receiveAddress, tokenId);
   };
+  const __test = async () => {
+    await contract!.nft!.transfer(
+      "0xd587924cE50c703182409D7d45eB79A9fBE6B49d",
+      67
+    );
+  };
+
   return (
     <div
       id="TransferNftModal"
