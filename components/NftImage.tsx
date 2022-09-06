@@ -14,7 +14,7 @@ const NftImage = ({
   return (
     <Link href={{ pathname: "/asset", query: { tokenId: tokenId } }} prefetch={false}>
       <a>
-        <div style={{ width: 256, height: 256, overflow: "hidden" }}>
+        {/* <div style={{ width: 256, height: 256, overflow: "hidden" }}> */}
           <Image
             alt={desc}
             src={resolveIPFS(url)}
@@ -23,7 +23,7 @@ const NftImage = ({
             loading="lazy"
             priority={false}
           ></Image>
-        </div>
+        {/* </div> */}
       </a>
     </Link>
   );

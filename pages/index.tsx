@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { CityBadgeNft } from "../classes/nfts";
+
 const NftItem_ = dynamic(() => import("../components/NftItem/NftItem"));
 const Home: NextPage = () => {
   // State to set when we are loading

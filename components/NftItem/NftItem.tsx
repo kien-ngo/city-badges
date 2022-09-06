@@ -11,7 +11,7 @@ const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
       <div className={nft_styles.Bottom}>
         <div className={nft_styles.NftDesc}>
           {nft.name}
-          <br></br>
+          {/* <br></br>
           <a
             style={{ textDecoration: "undelined", color: "blue" }}
             target="_blank"
@@ -19,7 +19,7 @@ const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
             href={nft.url}
           >
             View full image
-          </a>
+          </a> */}
         </div>
         {!nft.minted ? (
           <MintButton nft={nft} />
