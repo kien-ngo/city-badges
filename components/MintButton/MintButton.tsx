@@ -35,7 +35,7 @@ const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
     } catch (error) {
       setLoading(false);
       console.log(error);
-      alert("Failed to mint NFT!");
+      alert("Failed to mint NFT! " + error);
     }
   };
   return (
