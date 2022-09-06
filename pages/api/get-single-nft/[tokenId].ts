@@ -1,57 +1,22 @@
-import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { BigNumber } from "ethers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AssetPageNft } from "../../../classes/nft-asset-page";
 import { CityBadgeNft, NFTs } from "../../../classes/nfts";
-import { MINT_CONTRACT_ADDRESS } from "../../../utils/contractAddress";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { tokenId } = req.query;
-  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY!, "avalanche");
-  const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
-  const nftCollection = sdk.getNFTCollection(nftCollectionAddress);
-  const mintedNfts: NFTMetadataOwner[] = await nftCollection?.getAll();
   let nfts: CityBadgeNft[] = NFTs;
-  mintedNfts.forEach((nft) => {
-    if (!nft.metadata.attributes) return;
-    // Find the id attribute of the current NFT
-    // @ts-expect-error
-    const positionInMetadataArray = nft.metadata.attributes.id;
-    nfts[positionInMetadataArray].minted = true;
-  });
-  switch (req.method) {
-    case "GET":
-      const result: CityBadgeNft | undefined = nfts.find(
-        (nft) => nft.id == Number(tokenId)
-      );
-      if (!result) {
-        res.status(400).json({
-          message: "Error: Could not find NFT with tokenId: ",
-          tokenId,
-        });
-      } else {
-        let ownerAddress: string = "";
-        let id: BigNumber | undefined = undefined;
-        if (result.minted) {
-          const _nft = mintedNfts.find(
-            // @ts-expect-error
-            (nft) => nft.metadata.attributes!.id === result.id
-          );
-          if (_nft) {
-            ownerAddress = _nft.owner;
-            id = _nft.metadata.id;
-          }
-        }
-        const __response: AssetPageNft = {
-          result,
-          ownerAddress,
-          id,
-        };
-        res.status(200).json(__response);
-      }
-      break;
+  if (req.method !== "GET") return;
+  const result: CityBadgeNft | undefined = nfts.find(
+    (nft) => nft.id == Number(tokenId)
+  );
+  if (!result) {
+    res.status(400).json({
+      message: "Error: Could not find NFT with tokenId: ",
+      tokenId,
+    });
+  } else {
+    res.status(200).json(result);
   }
 }

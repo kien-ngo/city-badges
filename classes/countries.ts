@@ -10,4 +10,5 @@ export type Country =
   | "Japan"
   | "South Korea"
   | "France"
-  | "Vietnam";
+  | "Vietnam"
+  | "Malaysia";
