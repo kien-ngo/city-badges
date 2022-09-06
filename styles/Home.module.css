@@ -8,3 +8,15 @@
   grid-gap: 20px;
   padding-bottom: 50px;
 }
+.FilterBar {
+  width: 100%;
+  height: 50px;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 10px;
+}

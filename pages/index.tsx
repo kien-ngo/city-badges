@@ -37,6 +37,12 @@ const Home: NextPage = () => {
   }, [loading]);
   return (
     <Container>
+      <div className={styles.FilterBar}>
+        <select name="SelectAvailability" id="SelectAvailability">
+          <option value="available">All</option>
+          <option value="available">Available</option>
+        </select>
+      </div>
       <div className={styles.NftContainer}>
         {fetchedNfts ? (
           <>

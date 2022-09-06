@@ -12,7 +12,7 @@ const NftImage = ({
   tokenId: number;
 }) => {
   return (
-    <Link href={{ pathname: "/asset", query: { tokenId: tokenId } }}>
+    <Link href={{ pathname: "/asset", query: { tokenId: tokenId } }} prefetch={false}>
       <a>
         <div style={{ width: 256, height: 256, overflow: "hidden" }}>
           <Image
