@@ -7,7 +7,6 @@ import NftImage from "../NftImage";
 import TransferNftButton from "../TransferNftButton/TransferNftButton";
 
 const ProfileNftItem = ({ nft }: { nft: NFT<Erc721<BaseERC721>> }) => {
-  console.log(nft.metadata);
   // @ts-expect-error
   const tokenId: number = nft.metadata.attributes!.id;
   return (

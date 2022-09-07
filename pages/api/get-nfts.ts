@@ -1,18 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { NFTMetadataOwner, PayloadToSign721 } from "@thirdweb-dev/sdk";
+import {
+  NFTMetadataOwner,
+  PayloadToSign721,
+  ThirdwebSDK,
+} from "@thirdweb-dev/sdk";
 import { CityBadgeNft, NFTs } from "../../classes/nfts";
-import { getMintedNfts, NFT_COLLECTION } from "../../utils/getMintedNfts";
+import { getMintedNfts } from "../../utils/getMintedNfts";
+import { getThirdWebSdk } from "../../utils/getThirdWebSdk";
+import { MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   let nfts: CityBadgeNft[] = NFTs;
+  const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(false);
+  const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
+  const nftCollection = thirdwebSdk.getNFTCollection(nftCollectionAddress);
   // Initialize the NFT collection with the contract address
   switch (req.method) {
     case "GET":
       try {
         // Get all the NFTs that have been minted from the contract
-        const mintedNfts: NFTMetadataOwner[] = await getMintedNfts();
+        const mintedNfts: NFTMetadataOwner[] = await getMintedNfts(thirdwebSdk);
         // If no NFTs have been minted, return the array of NFT metadata
         if (!mintedNfts) res.status(200).json(nfts);
         // If there are NFTs that have been minted, go through each of them
@@ -67,7 +76,7 @@ export default async function handler(
       };
 
       try {
-        const response = await NFT_COLLECTION?.signature.generate(metadata);
+        const response = await nftCollection?.signature.generate(metadata);
 
         // Respond with the payload and signature which will be used in the frontend to mint the NFT
         res.status(201).json({

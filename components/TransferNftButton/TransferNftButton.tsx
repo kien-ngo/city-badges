@@ -15,7 +15,6 @@ const openTransferNftModal = (e: MouseEvent, tokenId: BigNumber) => {
 };
 
 const TransferNftButton = ({ tokenId }: { tokenId: BigNumber }) => {
-  console.log({ tokenId })
   return (
     <button
       className={nft_styles.MintBtn}

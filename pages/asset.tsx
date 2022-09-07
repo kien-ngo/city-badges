@@ -1,11 +1,11 @@
 import { useAddress } from "@thirdweb-dev/react";
-import { NFTMetadataOwner } from "@thirdweb-dev/sdk";
+import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { CityBadgeNft } from "../classes/nfts";
+import { CityBadgeNft, NFTs } from "../classes/nfts";
 import Container from "../components/Container";
 import MintButton from "../components/MintButton/MintButton";
 import TransferNftButton from "../components/TransferNftButton/TransferNftButton";
@@ -22,28 +22,15 @@ const AssetPage = () => {
   const router = useRouter();
   const { tokenId } = router.query;
   const address = useAddress();
-  const pageLoad = usePageLoad();
-  const [nft, setNft] = useState<CityBadgeNft>();
+  const { pageLoaded, isPageLoading } = usePageLoad();
+  const nft: CityBadgeNft | undefined = NFTs.find(
+    (nft) => nft.id == Number(tokenId)
+  );
   const [ownerAddress, setOwnerAddress] = useState<string>("");
   const [isMinted, setMintStatus] = useState<boolean>(false);
   const ownedByYou: boolean = ownerAddress === address;
-  const [fetchedNft, setFetchedNft] = useState(false);
   const [_tokenId, _setTokenId] = useState<BigNumber | undefined>();
-  const fetchNfts = async () => {
-    try {
-      const response = await fetch(`/api/get-single-nft/${tokenId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data: CityBadgeNft = await response.json();
-      setNft(data);
-      setFetchedNft(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   const fetchMintStatus = async () => {
     try {
       const response = await fetch(`/api/get-mint-status/${tokenId}`, {
@@ -61,27 +48,22 @@ const AssetPage = () => {
       console.error(error);
     }
   };
-  
-  useEffect(() => {
-    fetchNfts();
-    fetchMintStatus();
-  }, [pageLoad]);
 
-  if (!fetchedNft)
+  useEffect(() => {
+    fetchMintStatus();
+  }, [pageLoaded]);
+  if (isPageLoading)
     return (
       <Container>
-        <p style={{ marginLeft: "auto", marginRight: "auto" }}>Loading...</p>
+        <p>Loading ...</p>
       </Container>
     );
-  if (fetchedNft && !nft)
+  if (!nft)
     return (
       <Container>
-        <p style={{ marginLeft: "auto", marginRight: "auto" }}>
-          Error: Could not find NFT
-        </p>
+        <p>Could not find tokenId: {tokenId}</p>
       </Container>
     );
-  if (!nft) return <></>;
   return (
     <Container>
       <_TransferNftModal />
@@ -97,7 +79,7 @@ const AssetPage = () => {
             <div style={{ fontSize: 30 }}>{nft.name}</div>
             {isMinted && (
               <div>
-                {(ownedByYou && ownerAddress)
+                {ownedByYou && ownerAddress
                   ? "Owned by you"
                   : `Owner: ${truncateEthAddress(ownerAddress)}`}
               </div>
