@@ -61,10 +61,12 @@ const AssetPage = () => {
       console.error(error);
     }
   };
+  
   useEffect(() => {
     fetchNfts();
     fetchMintStatus();
   }, [pageLoad]);
+
   if (!fetchedNft)
     return (
       <Container>
@@ -95,7 +97,7 @@ const AssetPage = () => {
             <div style={{ fontSize: 30 }}>{nft.name}</div>
             {isMinted && (
               <div>
-                {ownedByYou
+                {(ownedByYou && ownerAddress)
                   ? "Owned by you"
                   : `Owner: ${truncateEthAddress(ownerAddress)}`}
               </div>
