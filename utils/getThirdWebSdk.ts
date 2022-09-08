@@ -1,6 +1,8 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { CURRENT_CHAIN } from "./contractAddress";
 
-export const getThirdWebSdk = (readonly:boolean = true) => {
-    if (readonly) return new ThirdwebSDK("avalanche");
-    return ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY!, "avalanche");
-}
+export const getThirdWebSdk = (readonly: boolean = true) => {
+  const thirdwebChain: string = CURRENT_CHAIN.toLowerCase();
+  if (readonly) return new ThirdwebSDK(thirdwebChain);
+  return ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY!, thirdwebChain);
+};
