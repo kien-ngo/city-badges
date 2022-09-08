@@ -4,7 +4,7 @@ import {
   PayloadToSign721,
   ThirdwebSDK,
 } from "@thirdweb-dev/sdk";
-import { CityBadgeNft, NFTs } from "../../NftData/nfts";
+import { NFTs } from "../../NftData/nfts";
 import { getThirdWebSdk } from "../../utils/getThirdWebSdk";
 import { getMintedNfts } from "../../utils/getMintedNfts";
 import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
