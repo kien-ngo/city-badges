@@ -11,7 +11,7 @@ import MintButton from "../components/MintButton/MintButton";
 import TransferNftButton from "../components/TransferNftButton/TransferNftButton";
 import usePageLoad from "../hooks/usePageLoad";
 import styles from "../styles/Asset.module.css";
-import { MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
+import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
 import { resolveIPFS } from "../utils/resolveIPFS";
 import truncateEthAddress from "../utils/truncateAddress";
 import { getThirdWebSdk } from "../utils/getThirdWebSdk";
@@ -107,16 +107,16 @@ const AssetPage = () => {
                     }}
                     target="_blank"
                     rel="noreferrer noopener"
-                    href={`https://snowtrace.io//address/${MINT_CONTRACT_ADDRESS}`}
+                    href={`https://snowtrace.io//address/${AVALANCHE_MINT_CONTRACT_ADDRESS}`}
                   >
-                    {truncateEthAddress(MINT_CONTRACT_ADDRESS)}
+                    {truncateEthAddress(AVALANCHE_MINT_CONTRACT_ADDRESS)}
                   </a>
                   <br />
                   Token ID:{" "}
                   <a
                     target="_blank"
                     rel="noreferrer noopener"
-                    href={`https://snowtrace.io//token/${MINT_CONTRACT_ADDRESS}?a=${nft.id}`}
+                    href={`https://snowtrace.io//token/${AVALANCHE_MINT_CONTRACT_ADDRESS}?a=${nft.id}`}
                     style={{
                       color: "lightcoral",
                       textDecoration: "underline",

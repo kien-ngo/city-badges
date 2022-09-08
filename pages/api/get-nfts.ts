@@ -6,7 +6,7 @@ import {
 } from "@thirdweb-dev/sdk";
 import { CityBadgeNft, NFTs } from "../../NftData/nfts";
 import { getThirdWebSdk } from "../../utils/getThirdWebSdk";
-import { MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
+import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 import { getMintedNfts } from "../../utils/getMintedNfts";
 export default async function handler(
   req: NextApiRequest,
@@ -16,7 +16,7 @@ export default async function handler(
     res.status(400).json({ message: "Invalid request" });
   const mintedLookup = Array.from({ length: NFTs.length }, () => false);
   const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(false);
-  const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
+  const nftCollectionAddress = AVALANCHE_MINT_CONTRACT_ADDRESS;
   const nftCollection = thirdwebSdk.getNFTCollection(nftCollectionAddress);
   // Get all the NFTs that have been minted from the contract
   const mintedNfts: NFTMetadataOwner[] = await getMintedNfts(thirdwebSdk);

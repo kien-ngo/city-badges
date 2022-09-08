@@ -1526,7 +1526,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 168,
     name: "Incheon #0",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/0.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/0.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1535,7 +1535,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 169,
     name: "Incheon #1",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/1.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/1.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1544,7 +1544,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 170,
     name: "Incheon #2",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/2.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/2.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1553,7 +1553,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 171,
     name: "Incheon #3",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/3.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/3.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1562,7 +1562,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 172,
     name: "Incheon #4",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/4.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/4.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1571,7 +1571,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 173,
     name: "Incheon #5",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/5.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/5.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1580,7 +1580,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 174,
     name: "Incheon #6",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/6.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/6.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1589,7 +1589,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 175,
     name: "Incheon #7",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/7.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/7.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",
@@ -1598,7 +1598,7 @@ export const NFTs: CityBadgeNft[] = [
   {
     id: 176,
     name: "Incheon #8",
-    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/8.png",
+    url: "ipfs://bafybeifttnzxfph5c5fpvlvku3laov74byocqrlolj666csx5ydwo6sweu/8.jpg",
     price: 0.04,
     country: "South Korea",
     city: "Incheon",

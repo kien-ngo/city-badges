@@ -1,7 +1,7 @@
 import Container from "../components/Container";
 import {
-  MARKETPLACE_CONTRACT_ADDRESS,
-  MINT_CONTRACT_ADDRESS,
+  AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS,
+  AVALANCHE_MINT_CONTRACT_ADDRESS,
 } from "../utils/contractAddress";
 
 const AboutPage = () => {
@@ -18,28 +18,28 @@ const AboutPage = () => {
       <hr />
       <p style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}>
         <span>
-          <b>Mint Contract address:</b> {MINT_CONTRACT_ADDRESS}
+          <b>Mint Contract address:</b> {AVALANCHE_MINT_CONTRACT_ADDRESS}
         </span>
         <br />
         <a
-          href={`https://snowtrace.io/address/${MINT_CONTRACT_ADDRESS}`}
+          href={`https://snowtrace.io/address/${AVALANCHE_MINT_CONTRACT_ADDRESS}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Link: https://snowtrace.io/address/{MINT_CONTRACT_ADDRESS}
+          Link: https://snowtrace.io/address/{AVALANCHE_MINT_CONTRACT_ADDRESS}
         </a>
         <br />
         <br />
         <span>
-          <b>Marketplace Contract address:</b> {MARKETPLACE_CONTRACT_ADDRESS}
+          <b>Marketplace Contract address:</b> {AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS}
         </span>
         <br />
         <a
-          href={`https://snowtrace.io/address/${MARKETPLACE_CONTRACT_ADDRESS}`}
+          href={`https://snowtrace.io/address/${AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Link: https://snowtrace.io/address/{MARKETPLACE_CONTRACT_ADDRESS}
+          Link: https://snowtrace.io/address/{AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS}
         </a>
       </p>
     </Container>

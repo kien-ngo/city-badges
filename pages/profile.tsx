@@ -2,7 +2,7 @@ import { useAddress, useContract, useOwnedNFTs } from "@thirdweb-dev/react";
 import dynamic from "next/dynamic";
 import Container from "../components/Container";
 import styles from "../styles/Profile.module.css";
-import { MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
+import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
 const NftItem_ = dynamic(
   () => import("../components/ProfileNftItem/ProfileNftItem")
 );
@@ -12,7 +12,7 @@ const _TransferNftModal = dynamic(
 );
 const ProfilePage = () => {
   const address = useAddress();
-  const { contract } = useContract(MINT_CONTRACT_ADDRESS);
+  const { contract } = useContract(AVALANCHE_MINT_CONTRACT_ADDRESS);
   const {
     data: ownedNFTs,
     isLoading,
