@@ -14,15 +14,14 @@ export default async function handler(
 ) {
   if (req.method !== "POST")
     res.status(400).json({ message: "Invalid request" });
-
-  let nfts: CityBadgeNft[] = NFTs;
+  const mintedLookup = Array.from({ length: NFTs.length }, () => false);
   const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(false);
   const nftCollectionAddress = MINT_CONTRACT_ADDRESS;
   const nftCollection = thirdwebSdk.getNFTCollection(nftCollectionAddress);
   // Get all the NFTs that have been minted from the contract
   const mintedNfts: NFTMetadataOwner[] = await getMintedNfts(thirdwebSdk);
   // If no NFTs have been minted, return the array of NFT metadata
-  if (!mintedNfts) res.status(200).json(nfts);
+  if (!mintedNfts) res.status(200).json(NFTs);
   // If there are NFTs that have been minted, go through each of them
   mintedNfts.forEach((nft) => {
     if (!nft.metadata.attributes) return;
@@ -30,13 +29,13 @@ export default async function handler(
     // @ts-expect-error
     const positionInMetadataArray = nft.metadata.attributes.id;
     // Change the minted status of the NFT metadata at the position of ID in the NFT metadata array
-    nfts[positionInMetadataArray].minted = true;
+    mintedLookup[positionInMetadataArray] = true;
   });
   // Get ID of the NFT to mint and address of the user from request body
   const { id, address } = req.body;
 
   // Ensure that the requested NFT has not yet been minted
-  if (nfts[id].minted === true) {
+  if (mintedLookup[id] === true) {
     res.status(400).json({ message: "Invalid request | This NFT is minted" });
   }
 
@@ -44,13 +43,13 @@ export default async function handler(
   const startTime = new Date(0);
 
   // Find the NFT to mint in the array of NFT metadata using the ID
-  const nftToMint = nfts[id];
+  const nftToMint = NFTs[id];
 
   // Set up the NFT metadata for signature generation
   const metadata: PayloadToSign721 = {
     metadata: {
       name: nftToMint.name,
-      description: nftToMint.description,
+      description: "",
       image: nftToMint.url,
       // Set the id attribute which we use to find which NFTs have been minted
       attributes: {
