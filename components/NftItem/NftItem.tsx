@@ -7,7 +7,7 @@ import MintButton from "../MintButton/MintButton";
 const NftItem = ({ nft, minted }: { nft: CityBadgeNft; minted: boolean }) => {
   return (
     <div className={nft_styles.NftItem}>
-      <NftImage desc={nft.description} url={nft.url} tokenId={nft.id} />
+      <NftImage desc={''} url={nft.url} tokenId={nft.id} />
       <div className={nft_styles.Bottom}>
         <div className={nft_styles.NftDesc}>
           {nft.name}

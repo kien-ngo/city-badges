@@ -1,10 +1,10 @@
 import { useContract } from "@thirdweb-dev/react";
 import { useState } from "react";
 import backdropStyle from "../../styles/backdrop.module.css";
-import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 import { MouseEvent } from "react";
 import styles from "./TransferNftModal.module.css";
 import { isAddress } from "ethers/lib/utils";
+import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
 
 const closeTransferNftModal = () => {
   document.documentElement.classList.remove("modalOpen");
@@ -18,7 +18,7 @@ const closeTransferNftModal = () => {
 };
 
 const TransferNftModal = () => {
-  const { contract } = useContract(AVALANCHE_MINT_CONTRACT_ADDRESS);
+  const { contract } = useContract(CONTRACTS.MINT[CURRENT_CHAIN]);
   const [receiveAddress, setReceiveAddress] = useState<string>("");
   const transferNft = async (e: MouseEvent) => {
     e.stopPropagation();

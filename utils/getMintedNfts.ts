@@ -1,5 +1,5 @@
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "./contractAddress";
+import { CONTRACTS, CURRENT_CHAIN } from "./contractAddress";
 
 export const getMintedNfts = async (
   sdk: ThirdwebSDK
@@ -8,7 +8,7 @@ export const getMintedNfts = async (
     alert("Error: Could not load thirdweb sdk");
     return [];
   }
-  const nftCollectionAddress = AVALANCHE_MINT_CONTRACT_ADDRESS;
+  const nftCollectionAddress = CONTRACTS.MINT[CURRENT_CHAIN];
   const nftCollection = sdk.getNFTCollection(nftCollectionAddress);
   // Get all the NFTs that have been minted from the contract
   const mintedNfts: NFTMetadataOwner[] = await nftCollection?.getAll();

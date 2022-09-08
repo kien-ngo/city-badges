@@ -1,12 +1,12 @@
 import { useAddress, useNFTCollection } from "@thirdweb-dev/react";
 import { useState } from "react";
-import { AVALANCHE_MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
+import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
 import nft_styles from "../../styles/Nft.module.css";
 import { CityBadgeNft } from "../../NftData/nfts";
 
 const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
   const address = useAddress();
-  const nftCollectionAddress = AVALANCHE_MINT_CONTRACT_ADDRESS;
+  const nftCollectionAddress = CONTRACTS.MINT[CURRENT_CHAIN];
   const [loading, setLoading] = useState<boolean>(false);
   const nftCollection = useNFTCollection(nftCollectionAddress);
   const mintNft = async (id: number) => {
@@ -14,7 +14,7 @@ const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
     setLoading(true);
     try {
       // Call API to generate signature and payload for minting
-      const response = await fetch("/api/get-nfts", {
+      const response = await fetch("/api/mint-nft", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
