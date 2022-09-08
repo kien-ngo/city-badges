@@ -1,10 +1,10 @@
-import { CityBadgeNft } from "../../classes/nfts";
+import { CityBadgeNft } from "../../NftData/nfts";
 import styles from "./NftItem.module.css";
 import nft_styles from "../../styles/Nft.module.css";
 import NftImage from "../NftImage";
 import MintButton from "../MintButton/MintButton";
 
-const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
+const NftItem = ({ nft, minted }: { nft: CityBadgeNft; minted: boolean }) => {
   return (
     <div className={nft_styles.NftItem}>
       <NftImage desc={nft.description} url={nft.url} tokenId={nft.id} />
@@ -21,7 +21,7 @@ const NftItem = ({ nft }: { nft: CityBadgeNft }) => {
             View full image
           </a> */}
         </div>
-        {!nft.minted ? (
+        {!minted ? (
           <MintButton nft={nft} />
         ) : (
           <button className={nft_styles.MintBtn} disabled>

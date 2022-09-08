@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CityBadgeNft, NFTs } from "../../../classes/nfts";
+import { CityBadgeNft, NFTs } from "../../../NftData/nfts";
 
 export default async function handler(
   req: NextApiRequest,

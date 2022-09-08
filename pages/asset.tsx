@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { CityBadgeNft, NFTs } from "../classes/nfts";
+import { CityBadgeNft, NFTs } from "../NftData/nfts";
 import Container from "../components/Container";
 import MintButton from "../components/MintButton/MintButton";
 import TransferNftButton from "../components/TransferNftButton/TransferNftButton";

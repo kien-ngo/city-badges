@@ -25,6 +25,11 @@ const NavBar = (props: NavBarProps) => {
           <a className={styles.NavbarLink}>Marketplace</a>
         </Link>
       )}
+      {router.pathname !== "/mint" && (
+        <Link href="/mint">
+          <a className={styles.NavbarLink}>Mint</a>
+        </Link>
+      )}
       {router.pathname !== "/about" && (
         <Link href="/about">
           <a className={styles.NavbarLink}>About</a>

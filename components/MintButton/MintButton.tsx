@@ -2,7 +2,7 @@ import { useAddress, useNFTCollection } from "@thirdweb-dev/react";
 import { useState } from "react";
 import { MINT_CONTRACT_ADDRESS } from "../../utils/contractAddress";
 import nft_styles from "../../styles/Nft.module.css";
-import { CityBadgeNft } from "../../classes/nfts";
+import { CityBadgeNft } from "../../NftData/nfts";
 
 const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
   const address = useAddress();

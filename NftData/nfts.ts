@@ -1,5 +1,5 @@
-import { Continent } from "./continents";
-import { Country } from "./countries";
+import { Continent } from "../classes/continents";
+import { Country } from "../classes/countries";
 
 export type CityBadgeNft = {
   id: number;
