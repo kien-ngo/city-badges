@@ -1,5 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
-import { NFTMetadataOwner } from "@thirdweb-dev/sdk";
+import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import dynamic from "next/dynamic";
 import Image from "next/future/image";
@@ -14,10 +14,13 @@ import styles from "../styles/Asset.module.css";
 import { MINT_CONTRACT_ADDRESS } from "../utils/contractAddress";
 import { resolveIPFS } from "../utils/resolveIPFS";
 import truncateEthAddress from "../utils/truncateAddress";
+import { getThirdWebSdk } from "../utils/getThirdWebSdk";
+import { getMintedNfts } from "../utils/getMintedNfts";
 const _TransferNftModal = dynamic(
   () => import("../components/TransferNftModal/TransferNftModal"),
   { ssr: false }
 );
+const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(true);
 const AssetPage = () => {
   const router = useRouter();
   const { tokenId } = router.query;
@@ -31,27 +34,21 @@ const AssetPage = () => {
   const ownedByYou: boolean = ownerAddress === address;
   const [_tokenId, _setTokenId] = useState<BigNumber | undefined>();
 
-  const fetchMintStatus = async () => {
-    try {
-      const response = await fetch(`/api/get-mint-status/${tokenId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const result: NFTMetadataOwner = await response.json();
-      const isMinted: boolean = result ? true : false;
-      setMintStatus(isMinted);
-      const _ownerAddress: string = result ? result.owner : "";
-      setOwnerAddress(_ownerAddress);
-    } catch (error) {
-      console.error(error);
+  // Fetch the current NFTs in the collection
+  const fetchMintedNft = async () => {
+    const mintedNfts: NFTMetadataOwner[] = await getMintedNfts(thirdwebSdk);
+    const result: NFTMetadataOwner | undefined = mintedNfts.find(
+      // @ts-expect-error
+      (nft) => nft.metadata.attributes.id == Number(tokenId)
+    );
+    if (result) {
+      setMintStatus(true);
+      setOwnerAddress(result.owner);
     }
   };
-
   useEffect(() => {
-    fetchMintStatus();
-  }, [pageLoaded]);
+    fetchMintedNft();
+  }, []);
   if (isPageLoading)
     return (
       <Container>
