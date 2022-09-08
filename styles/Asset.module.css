@@ -19,3 +19,9 @@
   flex-direction: column;
   padding: 15px;
 }
+@media only screen and (max-width: 500px) {
+  .Header img {
+    margin-left:auto;
+    margin-right: auto;
+  }
+}

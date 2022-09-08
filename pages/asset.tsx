@@ -76,9 +76,21 @@ const AssetPage = () => {
             <div style={{ fontSize: 30 }}>{nft.name}</div>
             {isMinted && (
               <div>
-                {ownedByYou && ownerAddress
-                  ? "Owned by you"
-                  : `Owner: ${truncateEthAddress(ownerAddress)}`}
+                {ownedByYou && ownerAddress ? (
+                  <>Owned by you</>
+                ) : (
+                  <a
+                    href={`https://snowtrace.io/address/${ownerAddress}`}
+                    style={{
+                      color: "lightcoral",
+                      textDecoration: "underline",
+                    }}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Owner: {truncateEthAddress(ownerAddress)}
+                  </a>
+                )}
               </div>
             )}
             <br />

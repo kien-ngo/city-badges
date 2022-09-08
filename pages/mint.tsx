@@ -40,15 +40,11 @@ const MintPage: NextPage = () => {
     const _mintedLookup = Array.from({ length: allNfts.length }, () => false);
     _mintedNfts.forEach((nft) => {
       if (!nft.metadata.attributes) return;
-      // Find the id attribute of the current NFT
       // @ts-expect-error
-      const positionInMetadataArray = nft.metadata.attributes.id;
-      // Change the minted status of the NFT metadata at the position of ID in the NFT metadata array
-      if (
-        positionInMetadataArray <= _mintedLookup.length &&
-        typeof _mintedLookup[positionInMetadataArray] === "boolean"
-      )
-        _mintedLookup[positionInMetadataArray] = true;
+      const tokenId:number = nft.metadata.attributes.id;
+      const index:number = allNfts.findIndex(nft => nft.id === tokenId)
+      if (index < 0) return;
+      _mintedLookup[index] = true;
     });
     setMintedLookup(_mintedLookup);
   };
@@ -78,6 +74,7 @@ const MintPage: NextPage = () => {
           <button
             className={styles.PageButton}
             key={pageId}
+            style={{backgroundColor: (index === currentPageIndex) ? 'lightblue' : ''}}
             onClick={() => goToPage(index)}
           >
             {pageId}
