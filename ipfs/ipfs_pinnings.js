@@ -1,8 +1,5 @@
-type Props = {
-  label: string;
-  cid: string;
-};
-export const ipfs_files: Props[] = [
+import fetch from 'node-fetch';
+const ipfs_files = [
   // Pinata
   {
     label: "Munich",
@@ -106,3 +103,24 @@ export const ipfs_files: Props[] = [
     cid: "bafybeidqvjiq2gp62sowqnkw7idskdamfuh6fbvbxmhchw5paw65mpmkze",
   },
 ];
+
+const pin = async (cid, name) => {
+  const data = {
+    cid: cid,
+    name: name,
+  };
+  return fetch("https://api.nft.storage/pins", {
+    body: JSON.stringify(data),
+    headers: {
+      Accept: "*/*",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc3RjhlMUM3ZWVFMDYzQjI1MTUwNTg2OTlCRjI0NzViQ2I0NjI0Q0IiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MjM5Mzk2Mjc5MiwibmFtZSI6ImRlc2t0b3BfdXBsb2FkIn0.sZBw5Sz9KECqiKER4fygx1oNmiaX80HvFAB_RDYe0jY",
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((_res) => console.log(_res));
+};
+
+ipfs_files.forEach((item) => pin(item.cid, item.label));
