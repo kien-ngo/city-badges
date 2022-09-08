@@ -26,6 +26,11 @@ const HamburgerMenu = () => {
         <span className={styles.LogInBtnContainer}>
           <ConnectWallet />
         </span>
+        {router.pathname !== "/mint" && (
+          <Link href="/mint">
+            <a className={styles.SidebarLink}>Mint</a>
+          </Link>
+        )}
         {router.pathname !== "/marketplace" && (
           <Link href="/marketplace">
             <a className={styles.SidebarLink}>Marketplace</a>

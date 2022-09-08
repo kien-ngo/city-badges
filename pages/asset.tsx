@@ -1,5 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
-import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { NFTMetadataOwner } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import dynamic from "next/dynamic";
 import Image from "next/future/image";

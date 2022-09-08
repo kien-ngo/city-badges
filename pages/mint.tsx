@@ -7,35 +7,34 @@ import { CityBadgeNft, NFTs } from "../NftData/nfts";
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { getThirdWebSdk } from "../utils/getThirdWebSdk";
 import { getMintedNfts } from "../utils/getMintedNfts";
-import usePageLoad from "../hooks/usePageLoad";
-import { paginated_nfts } from "../NftData/paginated_data";
+import { useRouter } from "next/router";
 const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(true);
 
 const NftItem_ = dynamic(() => import("../components/NftItem/NftItem"));
 
-// const PageButtons = ({ pages }: { pages: number[] }) => {
-//   return (
-//     <div className={styles.PaginationContainer}>
-//       {pages.map((pageId: number) => (
-//         <button className={styles.PageButton} key={pageId}>
-//           {pageId}
-//         </button>
-//       ))}
-//     </div>
-//   );
-// };
+// Split all the NFTs into chunks
+const ITEMS_PER_PAGE: number = 24;
+const PAGINATED_NFTS: Array<CityBadgeNft[]> = NFTs.reduce((all, one, i) => {
+  const ch = Math.floor(i / ITEMS_PER_PAGE);
+  // @ts-expect-error
+  all[ch] = [].concat(all[ch] || [], one);
+  return all;
+}, []);
 
 const MintPage: NextPage = () => {
+  const router = useRouter();
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [pages, setPages] = useState<Array<number>>(
-    Array.from({ length: paginated_nfts.length }, (_, i) => i + 1)
+    Array.from({ length: PAGINATED_NFTS.length }, (_, i) => i + 1)
   );
   const [allNfts, setAllNfts] = useState<CityBadgeNft[]>(
-    paginated_nfts[currentPageIndex]
+    PAGINATED_NFTS[currentPageIndex]
   );
+  // To track if an NFT is minted
   const [mintedLookup, setMintedLookup] = useState<boolean[]>(
     Array.from({ length: allNfts.length }, () => false)
   );
+  // Fetch the current NFTs in the collection
   const fetchMintedNft = async () => {
     const _mintedNfts: NFTMetadataOwner[] = await getMintedNfts(thirdwebSdk);
     const _mintedLookup = Array.from({ length: allNfts.length }, () => false);
@@ -54,28 +53,30 @@ const MintPage: NextPage = () => {
     setMintedLookup(_mintedLookup);
   };
 
+  // Update `allNfts` on changing page
+  useEffect(() => {
+    setAllNfts(PAGINATED_NFTS[currentPageIndex]);
+  }, [currentPageIndex]);
+
+  // Update mintedLookup whenever `allNfts` changes
   useEffect(() => {
     fetchMintedNft();
   }, [, allNfts]);
+
   // change page
   const goToPage = (pageIndex: number) => {
     setCurrentPageIndex(pageIndex);
-    window.scrollTo(0,0)
+    router.push({ pathname: "/mint", query: { page: pageIndex } }, undefined, {
+      shallow: true,
+    });
+    window.scrollTo(0, 0);
   };
-  // Update new nft items on changing page
-  useEffect(() => {
-    setAllNfts(paginated_nfts[currentPageIndex]);
-  }, [currentPageIndex]);
-
   const PageContainer = () => {
     return (
       <div className={styles.PaginationContainer}>
         {pages.map((pageId: number, index: number) => (
           <button
             className={styles.PageButton}
-            style={{
-              backgroundColor: index === currentPageIndex ? "lightblue" : "",
-            }}
             key={pageId}
             onClick={() => goToPage(index)}
           >
