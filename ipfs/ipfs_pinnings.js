@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 const ipfs_files = [
   // Pinata
   {
@@ -113,8 +113,7 @@ const pin = async (cid, name) => {
     body: JSON.stringify(data),
     headers: {
       Accept: "*/*",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc3RjhlMUM3ZWVFMDYzQjI1MTUwNTg2OTlCRjI0NzViQ2I0NjI0Q0IiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MjM5Mzk2Mjc5MiwibmFtZSI6ImRlc2t0b3BfdXBsb2FkIn0.sZBw5Sz9KECqiKER4fygx1oNmiaX80HvFAB_RDYe0jY",
+      Authorization: `Bearer ${process.env.NFT_STORAGE_API_KEY}`,
       "Content-Type": "application/json",
     },
     method: "POST",
