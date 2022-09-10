@@ -122,6 +122,14 @@ const ipfs_files = [
     label: "London, England",
     cid: "bafybeidru3xvdwstxkp2x5shiwrqoeionzbcrwlzy24vcttrvfmjewworu",
   },
+  {
+    label: "Helsinki, Finland",
+    cid: "bafybeifcdyrhtygr4tvwcqtddgrkvdjpmtoyv2wfdmao6nxc6xqfuzl6ty",
+  },
+  {
+    label: "Singapore, Singapore",
+    cid: "bafybeigoervoim3yagf6s662icbu55cetfbnan3lofq2nhxcxvpwk3xsoy",
+  },
 ];
 
 const pin = async (cid, name) => {

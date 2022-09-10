@@ -18,5 +18,7 @@ export const COUNTRIES = [
   "Italy",
   "Czechia",
   "England",
+  "Singapore",
+  "Finland",
 ];
 export type Country = typeof COUNTRIES[number];
