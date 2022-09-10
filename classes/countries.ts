@@ -1,20 +1,22 @@
-export type Country =
-  | "Canada"
-  | "USA"
-  | "Germany"
-  | "Netherland"
-  | "Hongkong"
-  | "Mexico"
-  | "Austria"
-  | "Australia"
-  | "Japan"
-  | "South Korea"
-  | "France"
-  | "Vietnam"
-  | "Malaysia"
-  | "China"
-  | "Cambodia"
-  | "Laos"
-  | "Italy"
-  | "Czechia"
-  | "England";
+export const COUNTRIES = [
+  "Canada",
+  "USA",
+  "Germany",
+  "Netherland",
+  "Hongkong",
+  "Mexico",
+  "Austria",
+  "Australia",
+  "Japan",
+  "South Korea",
+  "France",
+  "Vietnam",
+  "Malaysia",
+  "China",
+  "Cambodia",
+  "Laos",
+  "Italy",
+  "Czechia",
+  "England",
+];
+export type Country = typeof COUNTRIES[number];
