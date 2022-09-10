@@ -21,7 +21,7 @@
 }
 .NftDesc {
   font-size: 14px;
-  width: 180px;
+  /* width: 180px; */
 }
 /* @media (hover: hover) and (pointer: fine) {
   .NftItem:hover img {

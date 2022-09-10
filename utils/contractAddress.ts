@@ -6,10 +6,14 @@ export const AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS: string =
   "0x10e0C7bBd9A8E37F3c3264aAc8B74Afc623476eE";
 export const POLYGON_MINT_CONTRACT_ADDRESS: string =
   "0x7F93419B3043EceBEf58E175671461050312f46c";
-export const POLYGON_MARKETPLACE_CONTRACT_ADDRESS: string = "";
+export const POLYGON_MARKETPLACE_CONTRACT_ADDRESS: string =
+  "0xb74eabaA7d9E56B3a5100B0a7959757e270A0280";
 
-type SUPPORTED_CHAINS = "AVALANCHE" | "POLYGON";
+export type SUPPORTED_CHAINS = "AVALANCHE" | "POLYGON";
 type ContractProps = {
+  SYMBOL: {
+    [key in SUPPORTED_CHAINS]: string;
+  };
   CHAIN: {
     [key in SUPPORTED_CHAINS]: any;
   };
@@ -24,13 +28,17 @@ type ContractProps = {
   };
 };
 export const CONTRACTS: ContractProps = {
+  SYMBOL: {
+    AVALANCHE: "AVAX",
+    POLYGON: "MATIC",
+  },
   CHAIN: {
     AVALANCHE: ChainId.Avalanche,
     POLYGON: ChainId.Polygon,
   },
   RPC: {
     AVALANCHE: "https://rpc.ankr.com/avalanche",
-    POLYGON: "https://rpc.ankr.com/polygon",
+    POLYGON: process.env.ALCHEMY_POLYGON_RPC_ENDPOINT!,
   },
   MINT: {
     AVALANCHE: AVALANCHE_MINT_CONTRACT_ADDRESS,
@@ -41,4 +49,4 @@ export const CONTRACTS: ContractProps = {
     POLYGON: POLYGON_MARKETPLACE_CONTRACT_ADDRESS,
   },
 };
-export const CURRENT_CHAIN: SUPPORTED_CHAINS = "POLYGON";
+export const CURRENT_CHAIN: SUPPORTED_CHAINS = "AVALANCHE";

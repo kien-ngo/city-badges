@@ -34,13 +34,13 @@ const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
       alert("Failed to mint NFT! " + error);
     }
   };
   return (
     <button className={nft_styles.MintBtn} onClick={() => mintNft(nft.id)}>
-      {loading ? "Loading..." : `${nft.price}AVAX`}
+      {loading ? "Loading..." : `${nft.price} ${CONTRACTS.SYMBOL[CURRENT_CHAIN]}`}
     </button>
   );
 };

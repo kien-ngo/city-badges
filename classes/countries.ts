@@ -13,4 +13,8 @@ export type Country =
   | "Vietnam"
   | "Malaysia"
   | "China"
-  | "Cambodia";
+  | "Cambodia"
+  | "Laos"
+  | "Italy"
+  | "Czechia"
+  | "England";

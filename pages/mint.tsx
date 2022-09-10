@@ -8,6 +8,7 @@ import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { getThirdWebSdk } from "../utils/getThirdWebSdk";
 import { getMintedNfts } from "../utils/getMintedNfts";
 import { useRouter } from "next/router";
+import usePageLoad from "../hooks/usePageLoad";
 const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(true);
 
 const NftItem_ = dynamic(() => import("../components/NftItem/NftItem"));
@@ -23,6 +24,7 @@ const PAGINATED_NFTS: Array<CityBadgeNft[]> = NFTs.reduce((all, one, i) => {
 
 const MintPage: NextPage = () => {
   const router = useRouter();
+  const { pageLoaded } = usePageLoad();
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [pages, setPages] = useState<Array<number>>(
     Array.from({ length: PAGINATED_NFTS.length }, (_, i) => i + 1)
@@ -41,14 +43,19 @@ const MintPage: NextPage = () => {
     _mintedNfts.forEach((nft) => {
       if (!nft.metadata.attributes) return;
       // @ts-expect-error
-      const tokenId:number = nft.metadata.attributes.id;
-      const index:number = allNfts.findIndex(nft => nft.id === tokenId)
+      const tokenId: number = nft.metadata.attributes.id;
+      const index: number = allNfts.findIndex((nft) => nft.id === tokenId);
       if (index < 0) return;
       _mintedLookup[index] = true;
     });
     setMintedLookup(_mintedLookup);
   };
-
+  useEffect(() => {
+    if (!pageLoaded) return;
+    const _pageIndex = Number(router.query.page) || 0;
+    console.log("_pageIndex: ", router.query.page);
+    setCurrentPageIndex(_pageIndex)
+  }, [pageLoaded]);
   // Update `allNfts` on changing page
   useEffect(() => {
     setAllNfts(PAGINATED_NFTS[currentPageIndex]);
@@ -74,7 +81,9 @@ const MintPage: NextPage = () => {
           <button
             className={styles.PageButton}
             key={pageId}
-            style={{backgroundColor: (index === currentPageIndex) ? 'lightblue' : ''}}
+            style={{
+              backgroundColor: index === currentPageIndex ? "lightblue" : "",
+            }}
             onClick={() => goToPage(index)}
           >
             {pageId}

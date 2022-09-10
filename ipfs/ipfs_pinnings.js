@@ -102,6 +102,26 @@ const ipfs_files = [
     label: "Phnom_Penh",
     cid: "bafybeidqvjiq2gp62sowqnkw7idskdamfuh6fbvbxmhchw5paw65mpmkze",
   },
+  {
+    label: "Vientiane",
+    cid: "bafybeif2nlgg75lfwysejzj72qq6nu5lc6qktea35j4aapf46xkr3z4b3q",
+  },
+  {
+    label: "Lyon",
+    cid: "bafybeibrfckk6okateinclqhn3kddn7o7ngqqcpyqmfjhsukdinrxzarui",
+  },
+  {
+    label: "Naple, Italy",
+    cid: "bafybeighfsditxk5qgcnrx2ydipbrct4trd4u5xfnjr2i3oyvvlq6ip5ee",
+  },
+  {
+    label: "Prague, Czechia",
+    cid: "bafybeia4trxb4z73ihbihn7anxciavkofc5pw4pyq7f2yddf3eaxibip7m",
+  },
+  {
+    label: "London, England",
+    cid: "bafybeidru3xvdwstxkp2x5shiwrqoeionzbcrwlzy24vcttrvfmjewworu",
+  },
 ];
 
 const pin = async (cid, name) => {
