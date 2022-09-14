@@ -1,5 +1,5 @@
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { CONTRACTS, CURRENT_CHAIN } from "./contractAddress";
+import { CONTRACTS, CURRENT_CHAIN } from "../data/constants";
 
 export const getMintedNfts = async (
   sdk: ThirdwebSDK

@@ -26,6 +26,8 @@
   margin-bottom: auto;
   margin-right: 20px;
   color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 .LogoLink {
   margin-top: auto;

@@ -1,9 +1,9 @@
 import { Continent } from "../classes/continents";
 import { Country } from "../classes/countries";
-import { CURRENT_CHAIN, SUPPORTED_CHAINS } from "../utils/contractAddress";
+import { CURRENT_CHAIN, SUPPORTED_CHAINS } from "./constants";
 const basePrice: { [key in SUPPORTED_CHAINS]: number } = {
   AVALANCHE: 0.04,
-  POLYGON: 0.72,
+  POLYGON: 0.072,
 };
 export type CityBadgeNft = {
   id: number;

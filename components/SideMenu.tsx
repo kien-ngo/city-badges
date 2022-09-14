@@ -1,7 +1,7 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "./SideMenu.module.css";
+import styles from "../styles/SideMenu.module.css";
 
 const toggleSidemenu = () => {
   document.documentElement.classList.toggle("modalOpen");

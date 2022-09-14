@@ -1,10 +1,10 @@
 import { useContract } from "@thirdweb-dev/react";
 import { useState } from "react";
-import backdropStyle from "../../styles/backdrop.module.css";
+import backdropStyle from "../styles/backdrop.module.css";
 import { MouseEvent } from "react";
-import styles from "./TransferNftModal.module.css";
+import styles from '../styles/TransferNftModal.module.css';
 import { isAddress } from "ethers/lib/utils";
-import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
+import { CONTRACTS, CURRENT_CHAIN } from "../data/constants";
 
 const closeTransferNftModal = () => {
   document.documentElement.classList.remove("modalOpen");

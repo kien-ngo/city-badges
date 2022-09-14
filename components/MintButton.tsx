@@ -1,8 +1,7 @@
 import { useAddress, useNFTCollection } from "@thirdweb-dev/react";
 import { useState } from "react";
-import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
-import nft_styles from "../../styles/Nft.module.css";
-import { CityBadgeNft } from "../../NftData/nfts";
+import { CONTRACTS, CURRENT_CHAIN } from "../data/constants";
+import { CityBadgeNft } from "../data/nfts";
 
 const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
   const address = useAddress();
@@ -10,7 +9,7 @@ const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const nftCollection = useNFTCollection(nftCollectionAddress);
   const mintNft = async (id: number) => {
-    if (!address) return alert("Please connect a wallet first");
+    if (!address) return alert("Please log in to mint");
     setLoading(true);
     try {
       // Call API to generate signature and payload for minting
@@ -39,7 +38,7 @@ const MintButton = ({ nft }: { nft: CityBadgeNft }) => {
     }
   };
   return (
-    <button className={nft_styles.MintBtn} onClick={() => mintNft(nft.id)}>
+    <button onClick={() => mintNft(nft.id)}>
       {loading ? "Loading..." : `${nft.price} ${CONTRACTS.SYMBOL[CURRENT_CHAIN]}`}
     </button>
   );

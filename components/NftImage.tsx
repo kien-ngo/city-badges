@@ -5,24 +5,24 @@ import { resolveIPFS } from "../utils/resolveIPFS";
 const NftImage = ({
   desc,
   url,
-  tokenId,
+  id,
 }: {
   desc: string;
   url: string;
-  tokenId: number;
+  id: number;
 }) => {
   return (
-    <Link href={{ pathname: "/asset", query: { tokenId: tokenId } }} prefetch={false}>
+    <Link href={{ pathname: "/asset", query: { id: id } }} prefetch={false}>
       <a>
         {/* <div style={{ width: 256, height: 256, overflow: "hidden" }}> */}
-          <Image
-            alt={desc}
-            src={resolveIPFS(url)}
-            width={256}
-            height={256}
-            loading="lazy"
-            priority={false}
-          ></Image>
+        <Image
+          alt={desc}
+          src={resolveIPFS(url)}
+          width={256}
+          height={256}
+          loading="lazy"
+          priority={false}
+        ></Image>
         {/* </div> */}
       </a>
     </Link>

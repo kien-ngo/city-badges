@@ -1,13 +1,18 @@
 import { ReactElement, ReactFragment } from "react";
-import Navbar from "./Navbar/Navbar";
-
-const Container = (props: { children: ReactElement | ReactFragment }) => {
+import { PageName } from "../classes/pages";
+import Navbar from "./Navbar";
+type Props = {
+  pageName: PageName;
+  children: ReactElement | ReactFragment | string | boolean;
+};
+const Container = (props: Props) => {
+  const { pageName } = props;
   return (
     <div
       style={{ display: "flex", flexDirection: "column", paddingTop: "60px" }}
     >
-      <Navbar>
-
+      <Navbar pageName={pageName}>
+        
       </Navbar>
       {props.children}
     </div>

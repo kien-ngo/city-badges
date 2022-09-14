@@ -4,10 +4,10 @@ import {
   PayloadToSign721,
   ThirdwebSDK,
 } from "@thirdweb-dev/sdk";
-import { NFTs } from "../../NftData/nfts";
+import { NFTs } from "../../data/nfts";
 import { getThirdWebSdk } from "../../utils/getThirdWebSdk";
 import { getMintedNfts } from "../../utils/getMintedNfts";
-import { CONTRACTS, CURRENT_CHAIN } from "../../utils/contractAddress";
+import { CONTRACTS, CURRENT_CHAIN } from "../../data/constants";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Container from "../components/Container";
 import styles from "../styles/MintPage.module.css";
 import { useEffect, useState } from "react";
-import { CityBadgeNft, NFTs } from "../NftData/nfts";
+import { CityBadgeNft, NFTs } from "../data/nfts";
 import { NFTMetadataOwner, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { getThirdWebSdk } from "../utils/getThirdWebSdk";
 import { getMintedNfts } from "../utils/getMintedNfts";
@@ -13,7 +13,7 @@ import { COUNTRIES, Country } from "../classes/countries";
 import { Continent, CONTINENTS } from "../classes/continents";
 const thirdwebSdk: ThirdwebSDK = getThirdWebSdk(true);
 
-const NftItem_ = dynamic(() => import("../components/NftItem/NftItem"));
+const NftItem_ = dynamic(() => import("../components/MintNftItem"));
 
 const ITEMS_PER_PAGE: number = 24;
 
@@ -43,7 +43,7 @@ const getDefaultSearchQuery = (): SearchQueryProps => {
 };
 const MintPage: NextPage = () => {
   const router = useRouter();
-  const { pageLoaded } = usePageLoad();
+  const pageLoaded = usePageLoad();
   const [filteredNfts, setFilteredNfts] = useState<CityBadgeNft[]>(NFTs);
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [paginatedNfts, setPaginatedNfts] = useState<Array<CityBadgeNft[]>>(
@@ -130,7 +130,7 @@ const MintPage: NextPage = () => {
     );
   };
   return (
-    <Container>
+    <Container pageName="mint">
       <div className={styles.FilterBar}>
         <select name="SelectAvailability" id="SelectAvailability">
           <option value="available">All</option>

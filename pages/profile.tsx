@@ -1,13 +1,12 @@
 import { useAddress, useContract, useOwnedNFTs } from "@thirdweb-dev/react";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 import Container from "../components/Container";
 import styles from "../styles/Profile.module.css";
-import { CONTRACTS, CURRENT_CHAIN } from "../utils/contractAddress";
-const NftItem_ = dynamic(
-  () => import("../components/ProfileNftItem/ProfileNftItem")
-);
+import { CONTRACTS, CURRENT_CHAIN } from "../data/constants";
+const NftItem_ = dynamic(() => import("../components/ProfileNftItem"));
 const _TransferNftModal = dynamic(
-  () => import("../components/TransferNftModal/TransferNftModal"),
+  () => import("../components/TransferNftModal"),
   { ssr: false }
 );
 const ProfilePage = () => {
@@ -18,9 +17,10 @@ const ProfilePage = () => {
     isLoading,
     error,
   } = useOwnedNFTs(contract?.nft, address);
+  const [showMenuId, setShowMenuId] = useState<number>(-1);
   if (!address)
     return (
-      <Container>
+      <Container pageName="profile">
         <p
           style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
         >
@@ -30,7 +30,7 @@ const ProfilePage = () => {
     );
   if (isLoading)
     return (
-      <Container>
+      <Container pageName="profile">
         <p
           style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
         >
@@ -40,7 +40,7 @@ const ProfilePage = () => {
     );
   if (!ownedNFTs || !ownedNFTs.length)
     return (
-      <Container>
+      <Container pageName="profile">
         <p
           style={{ maxWidth: "650px", marginLeft: "auto", marginRight: "auto" }}
         >
@@ -49,20 +49,31 @@ const ProfilePage = () => {
       </Container>
     );
   return (
-    <Container>
+    <Container pageName="profile">
       <_TransferNftModal />
-      <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: '20px' }}>
+      <div
+        style={{
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginBottom: "20px",
+        }}
+      >
         You own {ownedNFTs.length} NFT(s)
         <br />
         On Sale: 0 <br />
         Offer: 0
-        <br/>
+        <br />
       </div>
       <div className={styles.NftContainer}>
         {!isLoading ? (
           <>
             {ownedNFTs?.map((nft) => (
-              <NftItem_ nft={nft} key={nft.metadata.id.toString()} />
+              <NftItem_
+                nft={nft}
+                key={nft.metadata.id.toString()}
+                showMenuId={showMenuId}
+                setShowMenuId={setShowMenuId}
+              />
             ))}
           </>
         ) : (

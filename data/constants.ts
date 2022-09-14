@@ -29,6 +29,9 @@ type ContractProps = {
   EXPLORER: {
     [key in SUPPORTED_CHAINS]: string;
   };
+  CHAIN_ID: {
+    [key in SUPPORTED_CHAINS]: any;
+  };
 };
 export const CONTRACTS: ContractProps = {
   SYMBOL: {
@@ -41,7 +44,7 @@ export const CONTRACTS: ContractProps = {
   },
   RPC: {
     AVALANCHE: "https://rpc.ankr.com/avalanche",
-    POLYGON: process.env.ALCHEMY_POLYGON_RPC_ENDPOINT!,
+    POLYGON: process.env.ALCHEMY_POLYGON_RPC_ENDPOINT || "https://rpc.ankr.com/polygon",
   },
   MINT: {
     AVALANCHE: AVALANCHE_MINT_CONTRACT_ADDRESS,
@@ -52,8 +55,12 @@ export const CONTRACTS: ContractProps = {
     POLYGON: POLYGON_MARKETPLACE_CONTRACT_ADDRESS,
   },
   EXPLORER: {
-    AVALANCHE: "https://snowtrace.io",
+    AVALANCHE: "https://snowtrace.io/",
     POLYGON: "https://polygonscan.com/",
   },
+  CHAIN_ID: {
+    AVALANCHE: 43114,
+    POLYGON: 137
+  }
 };
 export const CURRENT_CHAIN: SUPPORTED_CHAINS = "POLYGON";

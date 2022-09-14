@@ -1,25 +1,3 @@
-.NftContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
-  /* grid-auto-flow: 280px; */
-  max-width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
-  grid-gap: 20px;
-  padding-bottom: 50px;
-}
-.FilterBar {
-  width: 100%;
-  height: 50px;
-  max-width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 10px;
-}
 .LinkTest {
   font-size: 20px;
   padding: 10px;
