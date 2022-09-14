@@ -50,6 +50,7 @@ const ProfilePage = () => {
     );
   return (
     <Container pageName="profile">
+      <br />
       <_TransferNftModal />
       <div
         style={{

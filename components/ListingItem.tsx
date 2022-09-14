@@ -1,5 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
-import { DirectListing } from "@thirdweb-dev/sdk";
+import { DirectListing, Marketplace } from "@thirdweb-dev/sdk";
 import dynamic from "next/dynamic";
 import nft_styles from "../styles/Nft.module.css";
 import NftImage from "./NftImage";
@@ -9,9 +9,10 @@ const _CancelDirectListingButton = dynamic(
 );
 type Props = {
   nft: DirectListing;
+  marketplace: Marketplace;
 };
 const ListingItem = (props: Props) => {
-  const { nft } = props;
+  const { nft, marketplace } = props;
   const address = useAddress();
   // @ts-expect-error
   const id: number = nft.asset.attributes!.id;
@@ -21,7 +22,10 @@ const ListingItem = (props: Props) => {
       <div className={nft_styles.Bottom}>
         <div className={nft_styles.NftDesc}>{nft.asset.name!}</div>
         {nft.sellerAddress === address ? (
-          <_CancelDirectListingButton />
+          <_CancelDirectListingButton
+            listingId={nft.id}
+            marketplace={marketplace}
+          />
         ) : (
           <_BuyButton nft={nft} />
         )}

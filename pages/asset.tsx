@@ -76,7 +76,7 @@ const AssetPage = () => {
         console.log("Found listing: ", listing);
         setListing(listing);
       }
-      setLoadingListing(false)
+      setLoadingListing(false);
     })();
   }, [marketplace]);
   if (!pageLoaded) {
@@ -183,7 +183,12 @@ const AssetPage = () => {
                 contractAddress={CONTRACTS.MINT[CURRENT_CHAIN]}
               />
             )}
-            {listing && listing.sellerAddress === address && <_CancelDirectListingButton />}
+            {listing && listing.sellerAddress === address && (
+              <_CancelDirectListingButton
+                listingId={listing.id}
+                marketplace={marketplace!}
+              />
+            )}
           </div>
         </div>
       </div>
