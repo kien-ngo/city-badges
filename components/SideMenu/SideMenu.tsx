@@ -31,16 +31,11 @@ const HamburgerMenu = () => {
             <a className={styles.SidebarLink}>Mint</a>
           </Link>
         )}
-        {router.pathname !== "/marketplace" && (
+        {/* {router.pathname !== "/marketplace" && (
           <Link href="/marketplace">
             <a className={styles.SidebarLink}>Marketplace</a>
           </Link>
-        )}
-        {router.pathname !== "/about" && (
-          <Link href="/about">
-            <a className={styles.SidebarLink}>About</a>
-          </Link>
-        )}
+        )} */}
         {router.pathname !== "/profile" && (
           <Link href="/profile">
             <a className={styles.SidebarLink}>Profile</a>

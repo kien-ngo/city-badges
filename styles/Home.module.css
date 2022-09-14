@@ -20,3 +20,15 @@
   justify-content: flex-end;
   padding: 10px;
 }
+.LinkTest {
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid #333;
+  display: block;
+  text-align: center;
+  width: 150px;
+}
+.LinkTest:hover {
+  color: white;
+  background-color: #333;
+}

@@ -4,7 +4,7 @@ import { BigNumber } from "ethers";
 import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 import { CityBadgeNft, NFTs } from "../NftData/nfts";
 import Container from "../components/Container";
 import MintButton from "../components/MintButton/MintButton";
@@ -80,7 +80,7 @@ const AssetPage = () => {
                   <>Owned by you</>
                 ) : (
                   <a
-                    href={`https://snowtrace.io/address/${ownerAddress}`}
+                    href={`${CONTRACTS.EXPLORER[CURRENT_CHAIN]}/address/${ownerAddress}`}
                     style={{
                       color: "lightcoral",
                       textDecoration: "underline",
@@ -107,7 +107,7 @@ const AssetPage = () => {
                     }}
                     target="_blank"
                     rel="noreferrer noopener"
-                    href={`https://snowtrace.io//address/${CONTRACTS.MINT[CURRENT_CHAIN]}`}
+                    href={`${CONTRACTS.EXPLORER[CURRENT_CHAIN]}/address/${CONTRACTS.MINT[CURRENT_CHAIN]}`}
                   >
                     {truncateEthAddress(CONTRACTS.MINT[CURRENT_CHAIN])}
                   </a>
@@ -116,7 +116,7 @@ const AssetPage = () => {
                   <a
                     target="_blank"
                     rel="noreferrer noopener"
-                    href={`https://snowtrace.io//token/${CONTRACTS.MINT[CURRENT_CHAIN]}?a=${nft.id}`}
+                    href={`${CONTRACTS.EXPLORER[CURRENT_CHAIN]}/token/${CONTRACTS.MINT[CURRENT_CHAIN]}?a=${nft.id}`}
                     style={{
                       color: "lightcoral",
                       textDecoration: "underline",

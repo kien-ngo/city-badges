@@ -26,6 +26,9 @@ type ContractProps = {
   MARKETPLACE: {
     [key in SUPPORTED_CHAINS]: string;
   };
+  EXPLORER: {
+    [key in SUPPORTED_CHAINS]: string;
+  };
 };
 export const CONTRACTS: ContractProps = {
   SYMBOL: {
@@ -48,5 +51,9 @@ export const CONTRACTS: ContractProps = {
     AVALANCHE: AVALANCHE_MARKETPLACE_CONTRACT_ADDRESS,
     POLYGON: POLYGON_MARKETPLACE_CONTRACT_ADDRESS,
   },
+  EXPLORER: {
+    AVALANCHE: "https://snowtrace.io",
+    POLYGON: "https://polygonscan.com/",
+  },
 };
-export const CURRENT_CHAIN: SUPPORTED_CHAINS = "AVALANCHE";
+export const CURRENT_CHAIN: SUPPORTED_CHAINS = "POLYGON";

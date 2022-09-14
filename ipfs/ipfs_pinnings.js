@@ -111,7 +111,7 @@ const ipfs_files = [
     cid: "bafybeibrfckk6okateinclqhn3kddn7o7ngqqcpyqmfjhsukdinrxzarui",
   },
   {
-    label: "Naple, Italy",
+    label: "Naples, Italy",
     cid: "bafybeighfsditxk5qgcnrx2ydipbrct4trd4u5xfnjr2i3oyvvlq6ip5ee",
   },
   {
