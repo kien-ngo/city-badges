@@ -5,9 +5,10 @@ import styles from "../styles/ProfileNftItem.module.css";
 import nft_styles from "../styles/Nft.module.css";
 import NftImage from "./NftImage";
 import dynamic from "next/dynamic";
-import { CONTRACTS, CURRENT_CHAIN } from "../data/constants";
 const _TransferButton = dynamic(() => import("./TransferButton"));
-const _SellButton = dynamic(() => import("./SellButton"));
+const _CreateDirectListingButton = dynamic(
+  () => import("./CreateDirectListingButton")
+);
 type Props = {
   nft: NFT<Erc721<BaseERC721>>;
   showMenuId: number;
@@ -27,10 +28,7 @@ const ProfileNftItem = ({ nft, showMenuId, setShowMenuId }: Props) => {
         <div className={nft_styles.NftDesc}>{nft.metadata.name}</div>
         {showMenuId === tokenId && (
           <div className={styles.MenuButton}>
-            <_SellButton
-              tokenId={nft.metadata.id}
-              contractAddress={CONTRACTS.MINT[CURRENT_CHAIN]}
-            />
+            <_CreateDirectListingButton tokenId={nft.metadata.id} />
             <_TransferButton tokenId={nft.metadata.id} />
             <button onClick={() => setShowMenuId(-1)} style={{ color: "red" }}>
               Close menu

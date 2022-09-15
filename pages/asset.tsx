@@ -25,7 +25,9 @@ const _TransferNftModal = dynamic(
   () => import("../components/TransferNftModal"),
   { ssr: false }
 );
-const _SellButton = dynamic(() => import("../components/SellButton"));
+const _CreateDirectListingButton = dynamic(
+  () => import("../components/CreateDirectListingButton")
+);
 const _CancelDirectListingButton = dynamic(
   () => import("../components/CancelDirectListingButton")
 );
@@ -178,10 +180,7 @@ const AssetPage = () => {
             )}
             {ownedByYou && tokenId && <TransferNftButton tokenId={tokenId} />}
             {ownedByYou && tokenId && !listing && (
-              <_SellButton
-                tokenId={tokenId}
-                contractAddress={CONTRACTS.MINT[CURRENT_CHAIN]}
-              />
+              <_CreateDirectListingButton tokenId={tokenId} />
             )}
             {listing && listing.sellerAddress === address && (
               <_CancelDirectListingButton

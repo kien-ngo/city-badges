@@ -9,6 +9,10 @@ const _TransferNftModal = dynamic(
   () => import("../components/TransferNftModal"),
   { ssr: false }
 );
+const _DirectListingModal = dynamic(
+  () => import("../components/DirectListingModal"),
+  { ssr: false }
+);
 const ProfilePage = () => {
   const address = useAddress();
   const { contract } = useContract(CONTRACTS.MINT[CURRENT_CHAIN]);
@@ -52,6 +56,7 @@ const ProfilePage = () => {
     <Container pageName="profile">
       <br />
       <_TransferNftModal />
+      <_DirectListingModal />
       <div
         style={{
           marginLeft: "auto",
